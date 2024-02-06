@@ -20,14 +20,19 @@ function App() {
     dispatch(fetchCartData())
   },[dispatch]);
 
-  
+
   useEffect(() => {
     if (Isinitial){
       Isinitial = false;
       return;
     }
-    dispatch(sendCartData(cart));
-  }, [cart, dispatch]);
+    if(cart.changed){
+      dispatch(sendCartData(cart));
+  }
+}
+  , [cart, dispatch]);
+    
+  
 
 
   return (
